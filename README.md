@@ -17,10 +17,26 @@ Education
 :   **Bachelor: Mechanical engineering**
 
 
+Project
+---------
+
+1- **Django_React_Education_Management**
+
+Description: A system for selecting university
+
+**Repository ->https://github.com/iimohammad/Django_React_Education_Management**
+
+2- **CinemaSwift**
+
+Description: Cinema ticket sales management program
+
+**Repository  ->https://github.com/iimohammad/CinemaSwift**
+
+
 Experience
 ----------
 
-**Iranwellness:**
+1- **Iranwellness:**
 Among the things I did in this company are:
 -	Development of projects with Python and Django and DRF
 
@@ -28,7 +44,7 @@ Among the things I did in this company are:
 
 -	Improve database querie
 
-**Quera Bootcamp:**
+2- **Quera Bootcamp:**
 In the Quera bootcamp, we were working in teams of 4 and we faced many challenges by doing the projects.
 
 
@@ -44,11 +60,7 @@ Django, Django Rest freamework , React
 SQL , Sqlite,Postgre sql
 
 **Other Skills**:
-Design Pattern
-Git
-Docker
-RestApI
-Jira
+Design Pattern , Git , Docker , RestApI , Jira
 
 
 
