@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.full_name }} | {{ profile.title }}</title>
+    <link rel="stylesheet" href="{% static 'resume/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cv-container">
+
+        <aside class="sidebar">
+            <div class="profile-block">
+                {% if profile.photo %}
+                    <img src="{{ profile.photo.url }}" alt="{{ profile.full_name }}" class="profile-photo">
+                {% else %}
+                    <div class="profile-photo placeholder">{{ profile.full_name|slice:":1" }}</div>
+                {% endif %}
+                <h1>{{ profile.full_name }}</h1>
+                <p class="job-title">{{ profile.title }}</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>اطلاعات تماس</h2>
+                <ul class="contact-list">
+                    <li><span class="icon">✉</span><span dir="ltr">{{ profile.email }}</span></li>
+                    <li><span class="icon">☎</span><span dir="ltr">{{ profile.phone }}</span></li>
+                    {% if profile.location %}<li><span class="icon">📍</span>{{ profile.location }}</li>{% endif %}
+                    {% if profile.github_url %}<li><span class="icon">🔗</span><a dir="ltr" href="{{ profile.github_url }}" target="_blank">GitHub</a></li>{% endif %}
+                    {% if profile.linkedin_url %}<li><span class="icon">🔗</span><a dir="ltr" href="{{ profile.linkedin_url }}" target="_blank">LinkedIn</a></li>{% endif %}
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>زبان‌ها</h2>
+                {% for lang in languages %}
+                <div class="skill-bar">
+                    <div class="skill-bar-label">
+                        <span>{{ lang.name }}</span>
+                        <span>{{ lang.proficiency }}٪</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ lang.proficiency }}%;"></div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty-note">موردی ثبت نشده است.</p>
+                {% endfor %}
+            </div>
+
+            <div class="sidebar-section">
+                <h2>دوره‌ها و گواهینامه‌ها</h2>
+                <ul class="plain-list">
+                    {% for course in courses %}
+                    <li>{{ course.title }} <span class="muted">— {{ course.provider }}</span></li>
+                    {% empty %}
+                    <li class="empty-note">موردی ثبت نشده است.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">بیوگرافی</h2>
+                <p class="about-text">{{ profile.about_me }}</p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">تحصیلات</h2>
+                <div class="timeline">
+                    {% for edu in educations %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>{{ edu.degree }} — {{ edu.field_of_study }}</h3>
+                            <p class="institution">{{ edu.institution }}</p>
+                            <p class="period" dir="ltr">{{ edu.start_date }} – {{ edu.end_date }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="empty-note">موردی ثبت نشده است.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">سوابق کاری</h2>
+                <div class="timeline">
+                    {% for exp in experiences %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>{{ exp.role }} — {{ exp.company }}</h3>
+                            <p class="period" dir="ltr">{{ exp.start_date }} – {{ exp.end_date }}</p>
+                            <p>{{ exp.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="empty-note">موردی ثبت نشده است.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">توانایی‌ها</h2>
+                <div class="skills-grid">
+                    {% for label, skill_list in skills_by_category.items %}
+                    <div class="skill-category">
+                        <h3>{{ label }}</h3>
+                        <div class="tag-list">
+                            {% for skill in skill_list %}
+                            <span class="tag">{{ skill.name }}</span>
+                            {% empty %}
+                            <span class="empty-note">—</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">پروژه‌ها</h2>
+                <div class="projects-grid">
+                    {% for project in projects %}
+                    <div class="project-card">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        {% if project.tech_stack %}<p class="tech-stack">{{ project.tech_stack }}</p>{% endif %}
+                        <a dir="ltr" href="{{ project.link }}" target="_blank" class="project-link">مشاهده پروژه ↗</a>
+                    </div>
+                    {% empty %}
+                    <p class="empty-note">موردی ثبت نشده است.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+    </div>
+</body>
+</html>

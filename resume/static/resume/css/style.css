@@ -1,0 +1,164 @@
+/* ===== Design tokens =====
+   ink:      #16202A   sidebar background
+   paper:    #F7F4EE   main background
+   accent:   #D98E3B   warm amber (terminal-cursor tone)
+   text-1:   #1F2430   primary text on paper
+   text-2:   #6B7280   muted text
+   line:     #E4DFD3   hairline dividers
+   on-ink:   #E7E4DC   text on sidebar
+*/
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+    background: #EDE9DF;
+    color: #1F2430;
+    line-height: 1.75;
+}
+
+.cv-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #F7F4EE;
+    box-shadow: 0 20px 60px rgba(22, 32, 42, 0.15);
+    min-height: 90vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    background: #16202A;
+    color: #E7E4DC;
+    padding: 44px 32px;
+}
+
+.profile-block { text-align: center; margin-bottom: 40px; }
+
+.profile-photo {
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #D98E3B;
+    margin: 0 auto 20px;
+    display: block;
+}
+.profile-photo.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; font-weight: 700; color: #16202A;
+    background: #D98E3B;
+}
+
+.profile-block h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.job-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px; color: #D98E3B; letter-spacing: .03em;
+}
+
+.sidebar-section { margin-bottom: 36px; }
+.sidebar-section h2 {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .04em;
+    color: #D98E3B; text-transform: uppercase;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(231,228,220,0.15);
+    padding-bottom: 8px;
+}
+
+.contact-list { list-style: none; }
+.contact-list li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; margin-bottom: 10px; }
+.contact-list .icon { color: #D98E3B; width: 18px; text-align: center; }
+.contact-list a { color: #E7E4DC; text-decoration: none; }
+.contact-list a:hover { color: #D98E3B; }
+
+.skill-bar { margin-bottom: 14px; }
+.skill-bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+.bar-track { height: 5px; background: rgba(231,228,220,0.15); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: #D98E3B; border-radius: 3px; }
+
+.plain-list { list-style: none; font-size: 13px; }
+.plain-list li { margin-bottom: 10px; }
+.muted { color: #9AA3AD; font-size: 12px; }
+
+.empty-note { color: #9AA3AD; font-size: 13px; font-style: italic; }
+
+/* ---------- Main content ---------- */
+.main-content { padding: 44px 40px; }
+
+.section { margin-bottom: 38px; }
+.section:last-child { margin-bottom: 0; }
+
+.section-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: #D98E3B;
+    letter-spacing: .03em;
+    margin-bottom: 18px;
+}
+.section-title::before { content: "// "; opacity: .7; }
+
+.about-text { font-size: 15px; color: #333A46; max-width: 60ch; }
+
+/* Timeline styled like a commit log */
+.timeline { position: relative; padding-inline-start: 20px; border-inline-start: 2px solid #E4DFD3; }
+.timeline-item { position: relative; padding-bottom: 26px; padding-inline-start: 22px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+    position: absolute; inset-inline-start: -29px; top: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #D98E3B; border: 3px solid #F7F4EE;
+    box-shadow: 0 0 0 2px #D98E3B;
+}
+.timeline-content h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 4px; }
+.timeline-content .institution { font-size: 13.5px; color: #6B7280; margin-bottom: 2px; }
+.timeline-content .period {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px; color: #9AA3AD; margin-bottom: 8px;
+}
+.timeline-content p:last-child { font-size: 14px; color: #333A46; }
+
+/* Skills grid */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+.skill-category h3 { font-size: 13px; color: #6B7280; margin-bottom: 10px; font-weight: 600; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; padding: 5px 10px;
+    background: #EFE9DB; border: 1px solid #E4DFD3; border-radius: 5px;
+    color: #1F2430;
+}
+
+/* Projects */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.project-card {
+    border: 1px solid #E4DFD3; border-radius: 8px; padding: 18px;
+    background: #FBFAF6;
+}
+.project-card h3 { font-size: 15px; margin-bottom: 8px; }
+.project-card p { font-size: 13.5px; color: #333A46; margin-bottom: 8px; }
+.tech-stack {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px !important; color: #9AA3AD !important;
+}
+.project-link {
+    display: inline-block; margin-top: 4px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px; color: #D98E3B; text-decoration: none;
+}
+.project-link:hover { text-decoration: underline; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+    .cv-container { grid-template-columns: 1fr; margin: 0; }
+    .sidebar { padding: 32px 24px; }
+    .main-content { padding: 32px 24px; }
+}
+
+/* ---------- Accessibility ---------- */
+a:focus-visible, button:focus-visible {
+    outline: 2px solid #D98E3B; outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
